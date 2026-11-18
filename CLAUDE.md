@@ -13,7 +13,9 @@ kybernesis (κυβέρνησις, steering, government: the root of "govern" and
 - **predefined methods,** formal and statistical, adapted from the sibling libraries (tekmerion's construal and precedents, tyche's Bayes's rule and HSVI), with declared and world methods;
 - **dual verdicts:** every conclusion with its standing (formal) and its measure (statistical) kept apart, combined by a declared standard; a proposal never holds;
 - **the loop run** on an instance, for any admitted architecture;
-- later: policy making as evolution with an honest protocol (on heuresis), transfer between relational systems as a lens, and the constitution (versions of the schema, rules of change, migration of records).
+- **the record** of a steering: every value of every block at every turn with how it came to be (a method, an observation, a person's entry, an amendment, a review), files by digest, branches, replay and lineage, sealed in archeion's journal (decision 0004);
+- **transfer** between relational systems as a lens, decided in relations by kategoria and measured in laws, with support factors (decision 0004);
+- later: policy making as evolution with an honest protocol (on heuresis), and the constitution (rules of change, migration of records).
 
 It builds on these sibling libraries:
 
@@ -21,6 +23,7 @@ It builds on these sibling libraries:
 - **tekmerion**, for construal and interpreters;
 - **tyche**, for decisions under partial observation;
 - **apodeixis**, for verdicts;
+- **archeion**, for the record's sealed journal and its provenance (decision 0004);
 - **morphe**, for the grammar of architectures (its BNF reader);
 - peira, nomos, heuresis, kinesis, physis and calx, as the siblings' order requires.
 
@@ -38,7 +41,7 @@ The boundary is [decision 0002](development/decisions/0002-scope-boundaries-and-
 
 ## 2. Invariants
 
-1. **Dependencies.** kybernesis depends only on kategoria, tekmerion, tyche, apodeixis, morphe, peira, nomos, heuresis, kinesis, physis and calx among project libraries, and never on the infrastructure's domains, edges or works.
+1. **Dependencies.** kybernesis depends only on kategoria, tekmerion, tyche, apodeixis, archeion, morphe, peira, nomos, heuresis, kinesis, physis and calx among project libraries, and never on the infrastructure's domains, edges or works.
 2. **The architecture is data.** No block is known by name to the code that verifies, admits or runs; an architecture is declared and may be revised, and a revision is admitted only when its checks pass.
 3. **Admission is decided, never assumed.** A method fills a block only when its contract and the block's laws hold on an instance; an undecided law is said to be undecided.
 4. **A proposal is never the record's.** A method of the family proposal (a model's word, grade C) is undecided by every standard.
@@ -65,14 +68,14 @@ kybernesis shares its governing principle with its sibling repositories: **modul
 ```
 kybernesis/
 ├── CMakeLists.txt   the project: one header-only target kybernesis::<module> per module; the siblings added once
-├── kernel/ · architecture/ · blocks/ · methods/ · loop/
+├── kernel/ · architecture/ · blocks/ · methods/ · loop/ · record/ · transfer/
 ├── architectures/   architecture scripts: the standard architecture, and revisions
 ├── schema/          the schema stated as categories (framework.cat), checked by kategoria
 ├── docs/            the theory note and figures
 └── development/     decisions · ideas · release notes
 ```
 
-Each module directory holds `README.md` (concepts first, then the content, then the checks), `include/kybernesis/<module>/` and `tests/check_*.cpp`, check programs on calx's `verification`, registered with CTest by `kybernesis_module`, which also tells them where the architectures and the schema are kept (`KYBERNESIS_DATA`). The modules and their order are in [decision 0003](development/decisions/0003-the-first-modules.md).
+Each module directory holds `README.md` (concepts first, then the content, then the checks), `include/kybernesis/<module>/` and `tests/check_*.cpp`, check programs on calx's `verification`, registered with CTest by `kybernesis_module`, which also tells them where the architectures and the schema are kept (`KYBERNESIS_DATA`). The modules and their order are in [decision 0003](development/decisions/0003-the-first-modules.md) and [decision 0004](development/decisions/0004-the-record-and-transfer.md).
 
 ## 5. Working Procedures
 
@@ -116,4 +119,4 @@ When you edit kybernesis inside the infrastructure's `foundations/kybernesis`: c
 
 ## 8. Current State
 
-As of 2026-11-18, the first five modules are written and checked ([decision 0003](development/decisions/0003-the-first-modules.md); 86 checks): `kernel`, `architecture`, `blocks`, `methods` and `loop`, with the standard architecture (`architectures/standard.arch`) and the schema (`schema/framework.cat`, 42 statements). The infrastructure's visualization layer draws architectures as computational graphs (`visualization/js/steering/`). The repository is to be published at `https://github.com/huangwanhong-maker/kybernesis`; the user creates it.
+As of 2026-11-19, seven modules are written and checked (decisions 0003 and 0004; 137 checks in eight programs): `kernel`, `architecture`, `blocks`, `methods`, `loop`, `record` and `transfer`, with the standard architecture (`architectures/standard.arch`) and the schema (`schema/framework.cat`, 42 statements). The record declared archeion a dependency (decision 0004, to be confirmed by the user). The infrastructure's visualization layer draws architectures as computational graphs (`visualization/js/steering/`), its API composes the record and transfer (`api/cpp/science/steering.hpp`), and the Urban Studio's plug-in *From evidence to action* is their first work. The repository is published at `https://github.com/huangwanhong-maker/kybernesis`.

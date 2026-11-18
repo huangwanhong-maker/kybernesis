@@ -3,8 +3,8 @@
 # meet to be admitted; predefined methods, formal and statistical, adapted from the sibling libraries; and the loop run.
 #
 # Every module is a header-only target kybernesis::<module>. kybernesis uses the targets of kategoria (verification),
-# tekmerion (interpretation and construal), tyche (decisions under partial observation), apodeixis (verdicts), morphe (the
-# grammar of architectures) and through them peira, nomos, heuresis, kinesis, physis and calx: inside the infrastructure, the
+# tekmerion (interpretation and construal), tyche (decisions under partial observation), apodeixis (verdicts), archeion (the
+# sealed journal and provenance of the record), morphe (the grammar of architectures) and through them peira, nomos, heuresis, kinesis, physis and calx: inside the infrastructure, the
 # siblings under foundations/ (each added here when no larger project has added it). Built on its own, kybernesis builds its
 # checks (KYBERNESIS_CHECKS); added to a larger project, only when asked.
 
@@ -45,6 +45,7 @@ kybernesis_sibling(tyche tyche::probability)
 kybernesis_sibling(peira peira::synthesis)
 kybernesis_sibling(nomos nomos::measurement)
 kybernesis_sibling(apodeixis apodeixis::interpretation)
+kybernesis_sibling(archeion archeion::provenance)
 kybernesis_sibling(heuresis heuresis::evolution)
 kybernesis_sibling(kinesis kinesis::prisms)
 kybernesis_sibling(tekmerion tekmerion::construal)
@@ -75,9 +76,11 @@ function(kybernesis_module name)
   endif()
 endfunction()
 
-# The modules in their order (decision 0003).
+# The modules in their order (decisions 0003 and 0004).
 kybernesis_module(kernel LIBRARIES apodeixis::kernel)
 kybernesis_module(architecture LIBRARIES kybernesis::kernel morphe::formal kategoria::script)
 kybernesis_module(blocks LIBRARIES kybernesis::architecture kategoria::monoidal)
 kybernesis_module(methods LIBRARIES kybernesis::blocks tyche::decision tekmerion::construal tekmerion::interpretation)
 kybernesis_module(loop LIBRARIES kybernesis::methods calx::random)
+kybernesis_module(record LIBRARIES kybernesis::blocks archeion::fixity archeion::provenance CHECK_LIBRARIES kybernesis::methods)
+kybernesis_module(transfer LIBRARIES kybernesis::kernel kategoria::monoidal)
