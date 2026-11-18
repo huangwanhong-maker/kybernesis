@@ -1,0 +1,184 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="kb-graph" viewBox="0 0 2201 457" width="2201" height="457" font-family="'Source Serif 4', Georgia, serif" role="img" aria-label="the computational graph of architecture standard, version 1">
+<rect class="kb-ground" x="0" y="0" width="2201" height="457" fill="#FFFFFF"/>
+<g class="kb-stage-column" data-stage="before" data-register="Ontological">
+<rect x="10" y="8" width="176.7" height="400" rx="2" fill="#F1EDF6"/>
+<line x1="20" y1="55" x2="176.7" y2="55" stroke="#557A5C" stroke-opacity="0.35" stroke-width="0.6"/>
+</g>
+<g class="kb-stage-column" data-stage="observed" data-register="Manifestational">
+<rect x="192.7" y="8" width="361.8" height="400" rx="2" fill="#F7F2EA"/>
+<line x1="202.7" y1="55" x2="544.5" y2="55" stroke="#A0784A" stroke-opacity="0.35" stroke-width="0.6"/>
+</g>
+<g class="kb-stage-column" data-stage="recorded" data-register="Relational">
+<rect x="560.5" y="8" width="1460.3" height="400" rx="2" fill="#FAF2F7"/>
+<line x1="570.5" y1="55" x2="2010.8" y2="55" stroke="#9C5590" stroke-opacity="0.35" stroke-width="0.6"/>
+</g>
+<g class="kb-stage-column" data-stage="after" data-register="Ontological">
+<rect x="2026.8" y="8" width="164" height="400" rx="2" fill="#F1EDF6"/>
+<line x1="2036.8" y1="55" x2="2180.8" y2="55" stroke="#557A5C" stroke-opacity="0.35" stroke-width="0.6"/>
+</g>
+<g class="kb-wire kb-forward" data-wire="System.state -&gt; Collection.state"><path d="M142.1 286.8 L176.7 286.8 L213.2 287.2" fill="none" stroke="#2E2233" stroke-width="0.95" stroke-opacity="0.82" stroke-linecap="round" stroke-linejoin="round"/><path d="M213.2 284.1 L218.7 287.2 L213.2 290.3 Z" fill="#2E2233"/></g>
+<g class="kb-wire kb-forward" data-wire="System.state -&gt; Realisation.state"><path d="M142.1 286.8 L176.7 286.8 L218.7 78.0 L322.7 78.0 L400.6 78.0 L504.6 78.0 L586.5 78.0 L702.1 78.0 L796.0 78.0 L927.2 78.0 L1015.8 78.0 L1126.0 78.0 L1203.9 78.0 L1343.5 78.0 L1448.0 78.0 L1563.6 78.0 L1678.8 78.0 L1782.8 78.0 L1860.7 78.0 L1970.9 78.0 C2009.1 78.0 2009.1 248.7 2047.3 248.7" fill="none" stroke="#2E2233" stroke-width="0.95" stroke-opacity="0.82" stroke-linecap="round" stroke-linejoin="round"/><path d="M2047.3 245.6 L2052.8 248.7 L2047.3 251.8 Z" fill="#2E2233"/></g>
+<g class="kb-wire kb-forward" data-wire="Collection.traces -&gt; Evidence.traces"><path d="M322.7 287.2 L362.6 287.2 L395.1 287.7" fill="none" stroke="#2E2233" stroke-width="0.95" stroke-opacity="0.82" stroke-linecap="round" stroke-linejoin="round"/><path d="M395.1 284.6 L400.6 287.7 L395.1 290.8 Z" fill="#2E2233"/></g>
+<g class="kb-wire kb-forward" data-wire="Evidence.traces -&gt; Estimation.traces"><path d="M504.6 294.2 L544.5 294.2 L586.5 318.0 L702.1 318.0 L796.0 318.0 L927.2 318.0 C968.7 318.0 968.7 287.7 1010.3 287.7" fill="none" stroke="#2E2233" stroke-width="0.95" stroke-opacity="0.82" stroke-linecap="round" stroke-linejoin="round"/><path d="M1010.3 284.6 L1015.8 287.7 L1010.3 290.8 Z" fill="#2E2233"/></g>
+<g class="kb-wire kb-forward" data-wire="Evidence.words -&gt; Interpretation.words"><path d="M504.6 281.2 L539.2 281.2 L586.5 281.6 L702.1 281.6 L790.5 282.0" fill="none" stroke="#2E2233" stroke-width="0.95" stroke-opacity="0.82" stroke-linecap="round" stroke-linejoin="round"/><path d="M790.5 278.9 L796 282 L790.5 285.1 Z" fill="#2E2233"/></g>
+<g class="kb-wire kb-forward" data-wire="Constitution.terms -&gt; Interpretation.terms"><path d="M702.1 252.3 L736.7 252.3 C763.6 252.3 763.6 272.0 790.5 272.0" fill="none" stroke="#2E2233" stroke-width="0.95" stroke-opacity="0.82" stroke-linecap="round" stroke-linejoin="round"/><path d="M790.5 268.9 L796 272 L790.5 275.1 Z" fill="#2E2233"/></g>
+<g class="kb-wire kb-forward" data-wire="Interpretation.readings -&gt; Estimation.readings"><path d="M927.2 277.0 L977.8 277.0 C994.0 277.0 994.0 277.7 1010.3 277.7" fill="none" stroke="#2E2233" stroke-width="0.95" stroke-opacity="0.82" stroke-linecap="round" stroke-linejoin="round"/><path d="M1010.3 274.6 L1015.8 277.7 L1010.3 280.8 Z" fill="#2E2233"/></g>
+<g class="kb-wire kb-forward" data-wire="Interpretation.readings -&gt; Evaluation.readings"><path d="M927.2 277.0 L977.8 277.0 L1015.8 241.7 L1126.0 241.7 C1162.2 241.7 1162.2 260.0 1198.4 260.0" fill="none" stroke="#2E2233" stroke-width="0.95" stroke-opacity="0.82" stroke-linecap="round" stroke-linejoin="round"/><path d="M1198.4 256.9 L1203.9 260 L1198.4 263.1 Z" fill="#2E2233"/></g>
+<g class="kb-wire kb-forward" data-wire="Estimation.belief -&gt; Evaluation.belief"><path d="M1126.0 282.7 L1165.9 282.7 C1182.1 282.7 1182.1 270.0 1198.4 270.0" fill="none" stroke="#2E2233" stroke-width="0.95" stroke-opacity="0.82" stroke-linecap="round" stroke-linejoin="round"/><path d="M1198.4 266.9 L1203.9 270 L1198.4 273.1 Z" fill="#2E2233"/></g>
+<g class="kb-wire kb-forward" data-wire="Estimation.belief -&gt; Policy.belief"><path d="M1126.0 282.7 L1165.9 282.7 L1203.9 307.0 L1343.5 307.0 L1448.0 307.0 L1563.6 307.0 C1618.4 307.0 1618.4 264.4 1673.3 264.4" fill="none" stroke="#2E2233" stroke-width="0.95" stroke-opacity="0.82" stroke-linecap="round" stroke-linejoin="round"/><path d="M1673.3 261.3 L1678.8 264.4 L1673.3 267.5 Z" fill="#2E2233"/></g>
+<g class="kb-wire kb-forward" data-wire="Estimation.belief -&gt; PolicyMaking.belief"><path d="M1126.0 282.7 L1165.9 282.7 L1203.9 307.0 L1343.5 307.0 C1393.0 307.0 1393.0 274.8 1442.5 274.8" fill="none" stroke="#2E2233" stroke-width="0.95" stroke-opacity="0.82" stroke-linecap="round" stroke-linejoin="round"/><path d="M1442.5 271.7 L1448 274.8 L1442.5 277.9 Z" fill="#2E2233"/></g>
+<g class="kb-wire kb-forward" data-wire="Constitution.operators -&gt; Evaluation.operators"><path d="M702.1 213.3 L758.0 213.3 L796.0 208.7 L927.2 208.7 L1015.8 208.7 L1126.0 208.7 C1162.2 208.7 1162.2 240.0 1198.4 240.0" fill="none" stroke="#2E2233" stroke-width="0.95" stroke-opacity="0.82" stroke-linecap="round" stroke-linejoin="round"/><path d="M1198.4 236.9 L1203.9 240 L1198.4 243.1 Z" fill="#2E2233"/></g>
+<g class="kb-wire kb-forward" data-wire="Constitution.standards -&gt; Evaluation.standards"><path d="M702.1 226.3 L758.0 226.3 L796.0 219.7 L927.2 219.7 L1015.8 219.7 L1126.0 219.7 C1162.2 219.7 1162.2 250.0 1198.4 250.0" fill="none" stroke="#2E2233" stroke-width="0.95" stroke-opacity="0.82" stroke-linecap="round" stroke-linejoin="round"/><path d="M1198.4 246.9 L1203.9 250 L1198.4 253.1 Z" fill="#2E2233"/></g>
+<g class="kb-wire kb-forward" data-wire="Constitution.rules -&gt; PolicyMaking.rules"><path d="M702.1 239.3 L736.7 239.3 L796.0 230.7 L927.2 230.7 L1015.8 230.7 L1126.0 230.7 L1203.9 296.0 L1343.5 296.0 C1393.0 296.0 1393.0 264.8 1442.5 264.8" fill="none" stroke="#2E2233" stroke-width="0.95" stroke-opacity="0.82" stroke-linecap="round" stroke-linejoin="round"/><path d="M1442.5 261.7 L1448 264.8 L1442.5 267.9 Z" fill="#2E2233"/></g>
+<g class="kb-wire kb-forward" data-wire="Evaluation.evaluations -&gt; PolicyMaking.evaluations"><path d="M1343.5 255.0 L1410.0 255.0 L1442.5 254.8" fill="none" stroke="#2E2233" stroke-width="0.95" stroke-opacity="0.82" stroke-linecap="round" stroke-linejoin="round"/><path d="M1442.5 251.7 L1448 254.8 L1442.5 257.9 Z" fill="#2E2233"/></g>
+<g class="kb-wire kb-forward" data-wire="Proposals.proposals -&gt; PolicyMaking.proposals"><path d="M1328.8 113.0 L1384.7 113.0 C1413.6 113.0 1413.6 234.8 1442.5 234.8" fill="none" stroke="#2E2233" stroke-width="0.95" stroke-opacity="0.82" stroke-linecap="round" stroke-linejoin="round"/><path d="M1442.5 231.7 L1448 234.8 L1442.5 237.9 Z" fill="#2E2233"/></g>
+<g class="kb-wire kb-forward" data-wire="Practice.practice -&gt; PolicyMaking.practice"><path d="M1325.7 181.0 L1376.2 181.0 C1409.4 181.0 1409.4 244.8 1442.5 244.8" fill="none" stroke="#2E2233" stroke-width="0.95" stroke-opacity="0.82" stroke-linecap="round" stroke-linejoin="round"/><path d="M1442.5 241.7 L1448 244.8 L1442.5 247.9 Z" fill="#2E2233"/></g>
+<g class="kb-wire kb-forward" data-wire="PolicyMaking.policy -&gt; Policy.policy"><path d="M1563.6 254.8 L1640.8 254.8 L1673.3 254.4" fill="none" stroke="#2E2233" stroke-width="0.95" stroke-opacity="0.82" stroke-linecap="round" stroke-linejoin="round"/><path d="M1673.3 251.3 L1678.8 254.4 L1673.3 257.5 Z" fill="#2E2233"/></g>
+<g class="kb-wire kb-forward" data-wire="Policy.action -&gt; Decision.action"><path d="M1782.8 259.4 L1822.7 259.4 L1855.2 259.1" fill="none" stroke="#2E2233" stroke-width="0.95" stroke-opacity="0.82" stroke-linecap="round" stroke-linejoin="round"/><path d="M1855.2 256 L1860.7 259.1 L1855.2 262.2 Z" fill="#2E2233"/></g>
+<g class="kb-wire kb-forward" data-wire="Decision.intervention -&gt; Realisation.action"><path d="M1970.9 259.1 L2010.8 259.1 L2047.3 258.7" fill="none" stroke="#2E2233" stroke-width="0.95" stroke-opacity="0.82" stroke-linecap="round" stroke-linejoin="round"/><path d="M2047.3 255.6 L2052.8 258.7 L2047.3 261.8 Z" fill="#2E2233"/></g>
+<g class="kb-wire kb-next" data-wire="Estimation.belief -&gt; Estimation.prior"><path d="M1126.0 299.7 C1146.0 299.7 1112.0 330.7 1112.0 314.2" fill="none" stroke="#7864B0" stroke-width="1.1" stroke-opacity="1" stroke-dasharray="4.5 3" stroke-linecap="round" stroke-linejoin="round"/><path d="M1108.9 314.2 L1112 308.7 L1115.1 314.2 Z" fill="#7864B0"/></g>
+<g class="kb-wire kb-next" data-wire="Policy.current -&gt; PolicyMaking.current"><path d="M1770.8 285.4 V336.0 Q1770.8 342.0 1764.8 342.0 H1466.0 Q1460.0 342.0 1460.0 336.0 V290.3" fill="none" stroke="#7864B0" stroke-width="1.1" stroke-opacity="1" stroke-dasharray="4.5 3" stroke-linecap="round" stroke-linejoin="round"/><path d="M1456.9 290.3 L1460 284.8 L1463.1 290.3 Z" fill="#7864B0"/></g>
+<g class="kb-wire kb-next" data-wire="Decision.intervention -&gt; Estimation.action"><path d="M1949.9 285.1 V352.0 Q1949.9 358.0 1943.9 358.0 H1033.8 Q1027.8 358.0 1027.8 352.0 V314.2" fill="none" stroke="#7864B0" stroke-width="1.1" stroke-opacity="1" stroke-dasharray="4.5 3" stroke-linecap="round" stroke-linejoin="round"/><path d="M1024.7 314.2 L1027.8 308.7 L1030.9 314.2 Z" fill="#7864B0"/></g>
+<g class="kb-wire kb-next" data-wire="Decision.inquiry -&gt; Collection.inquiry"><path d="M1958.9 285.1 V368.0 Q1958.9 374.0 1952.9 374.0 H236.7 Q230.7 374.0 230.7 368.0 V318.7" fill="none" stroke="#7864B0" stroke-width="1.1" stroke-opacity="1" stroke-dasharray="4.5 3" stroke-linecap="round" stroke-linejoin="round"/><path d="M227.6 318.7 L230.7 313.2 L233.8 318.7 Z" fill="#7864B0"/></g>
+<g class="kb-wire kb-next" data-wire="Realisation.state -&gt; System.state"><path d="M2162.8 279.7 V384.0 Q2162.8 390.0 2156.8 390.0 H44.0 Q38.0 390.0 38.0 384.0 V318.3" fill="none" stroke="#7864B0" stroke-width="1.1" stroke-opacity="1" stroke-dasharray="4.5 3" stroke-linecap="round" stroke-linejoin="round"/><path d="M34.9 318.3 L38 312.8 L41.1 318.3 Z" fill="#7864B0"/></g>
+<g class="kb-block kb-boundary" data-block="Constitution">
+<rect x="586.5" y="202.3" width="115.6" height="61" rx="2.5" fill="#FFFFFF" stroke="#6E5C78" stroke-width="0.9" stroke-dasharray="2.5 2.2"/>
+</g>
+<g class="kb-block kb-boundary" data-block="Proposals">
+<rect x="1218.6" y="93" width="110.2" height="40" rx="2.5" fill="#FFFFFF" stroke="#6E5C78" stroke-width="0.9" stroke-dasharray="2.5 2.2"/>
+</g>
+<g class="kb-block kb-boundary" data-block="Practice">
+<rect x="1221.7" y="161" width="104" height="40" rx="2.5" fill="#FFFFFF" stroke="#6E5C78" stroke-width="0.9" stroke-dasharray="2.5 2.2"/>
+</g>
+<g class="kb-block kb-referred" data-block="System">
+<rect x="26" y="260.8" width="116.1" height="52" rx="2.5" fill="#F6F9F5" stroke="#557A5C" stroke-width="1.15" stroke-dasharray="5 3"/>
+</g>
+<g class="kb-block" data-block="Collection">
+<rect x="218.7" y="261.2" width="104" height="52" rx="2.5" fill="#FFFFFF" stroke="#2E2233" stroke-width="0.9"/>
+</g>
+<g class="kb-block" data-block="Evidence">
+<rect x="400.6" y="261.7" width="104" height="52" rx="2.5" fill="#FFFFFF" stroke="#2E2233" stroke-width="0.9"/>
+</g>
+<g class="kb-block" data-block="Interpretation">
+<rect x="796" y="251" width="131.2" height="52" rx="2.5" fill="#FFFFFF" stroke="#2E2233" stroke-width="0.9"/>
+</g>
+<g class="kb-block" data-block="Estimation">
+<rect x="1015.8" y="256.7" width="110.2" height="52" rx="2.5" fill="#FFFFFF" stroke="#2E2233" stroke-width="0.9"/>
+</g>
+<g class="kb-block" data-block="Evaluation">
+<rect x="1203.9" y="229" width="139.6" height="52" rx="2.5" fill="#FFFFFF" stroke="#2E2233" stroke-width="0.9"/>
+</g>
+<g class="kb-block" data-block="PolicyMaking">
+<rect x="1448" y="224.8" width="115.6" height="60" rx="2.5" fill="#FFFFFF" stroke="#2E2233" stroke-width="0.9"/>
+</g>
+<g class="kb-block" data-block="Policy">
+<rect x="1678.8" y="233.4" width="104" height="52" rx="2.5" fill="#FFFFFF" stroke="#2E2233" stroke-width="0.9"/>
+</g>
+<g class="kb-block" data-block="Decision">
+<rect x="1860.7" y="233.1" width="110.2" height="52" rx="2.5" fill="#FFFFFF" stroke="#2E2233" stroke-width="0.9"/>
+</g>
+<g class="kb-block kb-referred" data-block="Realisation">
+<rect x="2052.8" y="227.7" width="122" height="52" rx="2.5" fill="#F6F9F5" stroke="#557A5C" stroke-width="1.15" stroke-dasharray="5 3"/>
+</g>
+<circle class="kb-port" cx="142.1" cy="286.8" r="1.9" fill="#2E2233"/>
+<circle class="kb-port" cx="322.7" cy="287.2" r="1.9" fill="#2E2233"/>
+<circle class="kb-port" cx="504.6" cy="294.2" r="1.9" fill="#2E2233"/>
+<circle class="kb-port" cx="504.6" cy="281.2" r="1.9" fill="#2E2233"/>
+<circle class="kb-port" cx="702.1" cy="252.3" r="1.9" fill="#2E2233"/>
+<circle class="kb-port" cx="927.2" cy="277" r="1.9" fill="#2E2233"/>
+<circle class="kb-port" cx="1126" cy="282.7" r="1.9" fill="#2E2233"/>
+<circle class="kb-port" cx="702.1" cy="213.3" r="1.9" fill="#2E2233"/>
+<circle class="kb-port" cx="702.1" cy="226.3" r="1.9" fill="#2E2233"/>
+<circle class="kb-port" cx="702.1" cy="239.3" r="1.9" fill="#2E2233"/>
+<circle class="kb-port" cx="1343.5" cy="255" r="1.9" fill="#2E2233"/>
+<circle class="kb-port" cx="1328.8" cy="113" r="1.9" fill="#2E2233"/>
+<circle class="kb-port" cx="1325.7" cy="181" r="1.9" fill="#2E2233"/>
+<circle class="kb-port" cx="1563.6" cy="254.8" r="1.9" fill="#2E2233"/>
+<circle class="kb-port" cx="1782.8" cy="259.4" r="1.9" fill="#2E2233"/>
+<circle class="kb-port" cx="1970.9" cy="259.1" r="1.9" fill="#2E2233"/>
+<circle class="kb-port" cx="1126" cy="299.7" r="1.9" fill="#2E2233"/>
+<circle class="kb-port" cx="1770.8" cy="285.4" r="1.9" fill="#2E2233"/>
+<circle class="kb-port" cx="1949.9" cy="285.1" r="1.9" fill="#2E2233"/>
+<circle class="kb-port" cx="1958.9" cy="285.1" r="1.9" fill="#2E2233"/>
+<circle class="kb-port" cx="2162.8" cy="279.7" r="1.9" fill="#2E2233"/>
+<g class="kb-key kb-key-wire"><path d="M14 434 H36" stroke="#2E2233" stroke-width="0.95"/><path d="M35.5 430.9 L41 434 L35.5 437.1 Z" fill="#2E2233"/></g>
+<g class="kb-key kb-key-next"><path d="M88.4 434 H110.4" stroke="#7864B0" stroke-width="1.1" stroke-dasharray="4.5 3"/><path d="M109.9 430.9 L115.4 434 L109.9 437.1 Z" fill="#7864B0"/></g>
+<rect class="kb-key kb-key-boundary" x="336.4" y="428" width="20" height="12" rx="2" fill="#FFFFFF" stroke="#6E5C78" stroke-width="0.9" stroke-dasharray="2.5 2.2"/>
+<rect class="kb-key kb-key-referred" x="591.6" y="428" width="20" height="12" rx="2" fill="#F6F9F5" stroke="#557A5C" stroke-width="1.15" stroke-dasharray="5 3"/>
+<rect class="kb-key kb-key-register" x="796.4" y="428" width="12" height="12" rx="1.5" fill="#F7F2EA" stroke="#A0784A" stroke-opacity="0.6" stroke-width="0.7"/>
+<rect class="kb-key kb-key-register" x="918.4" y="428" width="12" height="12" rx="1.5" fill="#FAF2F7" stroke="#9C5590" stroke-opacity="0.6" stroke-width="0.7"/>
+<rect class="kb-key kb-key-register" x="1012.4" y="428" width="12" height="12" rx="1.5" fill="#F1EDF6" stroke="#557A5C" stroke-opacity="0.6" stroke-width="0.7"/>
+<text class="kb-stage" x="20" y="30" font-size="12.5" fill="#557A5C" font-weight="600">before</text>
+<text class="kb-register" x="20" y="46" font-size="10" fill="#6E5C78" font-style="italic">Ontological</text>
+<text class="kb-stage" x="202.7" y="30" font-size="12.5" fill="#A0784A" font-weight="600">observed</text>
+<text class="kb-register" x="202.7" y="46" font-size="10" fill="#6E5C78" font-style="italic">Manifestational</text>
+<text class="kb-stage" x="570.5" y="30" font-size="12.5" fill="#9C5590" font-weight="600">recorded</text>
+<text class="kb-register" x="570.5" y="46" font-size="10" fill="#6E5C78" font-style="italic">Relational</text>
+<text class="kb-stage" x="2036.8" y="30" font-size="12.5" fill="#557A5C" font-weight="600">after</text>
+<text class="kb-register" x="2036.8" y="46" font-size="10" fill="#6E5C78" font-style="italic">Ontological</text>
+<text class="kb-name" x="644.3" y="229.8" font-size="13" fill="#2E2233" text-anchor="middle" font-weight="600">Constitution</text>
+<text class="kb-yields" x="644.3" y="242.8" font-size="10.5" fill="#6E5C78" text-anchor="middle">yields Rule</text>
+<text class="kb-name" x="1273.7" y="110" font-size="13" fill="#2E2233" text-anchor="middle" font-weight="600">Proposals</text>
+<text class="kb-yields" x="1273.7" y="123" font-size="10.5" fill="#6E5C78" text-anchor="middle">yields Proposal</text>
+<text class="kb-name" x="1273.7" y="178" font-size="13" fill="#2E2233" text-anchor="middle" font-weight="600">Practice</text>
+<text class="kb-yields" x="1273.7" y="191" font-size="10.5" fill="#6E5C78" text-anchor="middle">yields Policy</text>
+<text class="kb-name" x="84" y="277.8" font-size="13" fill="#2E2233" text-anchor="middle" font-weight="600">System</text>
+<text class="kb-yields" x="84" y="290.8" font-size="10.5" fill="#6E5C78" text-anchor="middle">yields Condition</text>
+<text class="kb-laws" x="84" y="303.8" font-size="10.5" fill="#6E5C78" text-anchor="middle" font-style="italic">referred</text>
+<text class="kb-name" x="270.7" y="278.2" font-size="13" fill="#2E2233" text-anchor="middle" font-weight="600">Collection</text>
+<text class="kb-yields" x="270.7" y="291.2" font-size="10.5" fill="#6E5C78" text-anchor="middle">yields Trace</text>
+<text class="kb-laws" x="270.7" y="304.2" font-size="10.5" fill="#6E5C78" text-anchor="middle" font-style="italic">total</text>
+<text class="kb-name" x="452.6" y="278.7" font-size="13" fill="#2E2233" text-anchor="middle" font-weight="600">Evidence</text>
+<text class="kb-yields" x="452.6" y="291.7" font-size="10.5" fill="#6E5C78" text-anchor="middle">yields Trace</text>
+<text class="kb-laws" x="452.6" y="304.7" font-size="10.5" fill="#6E5C78" text-anchor="middle" font-style="italic">total</text>
+<text class="kb-name" x="861.6" y="268" font-size="13" fill="#2E2233" text-anchor="middle" font-weight="600">Interpretation</text>
+<text class="kb-yields" x="861.6" y="281" font-size="10.5" fill="#6E5C78" text-anchor="middle">yields Construal</text>
+<text class="kb-laws" x="861.6" y="294" font-size="10.5" fill="#6E5C78" text-anchor="middle" font-style="italic">total</text>
+<text class="kb-name" x="1070.9" y="273.7" font-size="13" fill="#2E2233" text-anchor="middle" font-weight="600">Estimation</text>
+<text class="kb-yields" x="1070.9" y="286.7" font-size="10.5" fill="#6E5C78" text-anchor="middle">yields Estimate</text>
+<text class="kb-laws" x="1070.9" y="299.7" font-size="10.5" fill="#6E5C78" text-anchor="middle" font-style="italic">total, sound</text>
+<text class="kb-name" x="1273.7" y="246" font-size="13" fill="#2E2233" text-anchor="middle" font-weight="600">Evaluation</text>
+<text class="kb-yields" x="1273.7" y="259" font-size="10.5" fill="#6E5C78" text-anchor="middle">yields Evaluation</text>
+<text class="kb-laws" x="1273.7" y="272" font-size="10.5" fill="#6E5C78" text-anchor="middle" font-style="italic">total, deterministic</text>
+<text class="kb-name" x="1505.8" y="245.8" font-size="13" fill="#2E2233" text-anchor="middle" font-weight="600">PolicyMaking</text>
+<text class="kb-yields" x="1505.8" y="258.8" font-size="10.5" fill="#6E5C78" text-anchor="middle">yields Policy</text>
+<text class="kb-laws" x="1505.8" y="271.8" font-size="10.5" fill="#6E5C78" text-anchor="middle" font-style="italic">total</text>
+<text class="kb-name" x="1730.8" y="250.4" font-size="13" fill="#2E2233" text-anchor="middle" font-weight="600">Policy</text>
+<text class="kb-yields" x="1730.8" y="263.4" font-size="10.5" fill="#6E5C78" text-anchor="middle">yields Policy</text>
+<text class="kb-laws" x="1730.8" y="276.4" font-size="10.5" fill="#6E5C78" text-anchor="middle" font-style="italic">total</text>
+<text class="kb-name" x="1915.8" y="250.1" font-size="13" fill="#2E2233" text-anchor="middle" font-weight="600">Decision</text>
+<text class="kb-yields" x="1915.8" y="263.1" font-size="10.5" fill="#6E5C78" text-anchor="middle">yields Decision</text>
+<text class="kb-laws" x="1915.8" y="276.1" font-size="10.5" fill="#6E5C78" text-anchor="middle" font-style="italic">total</text>
+<text class="kb-name" x="2113.8" y="244.7" font-size="13" fill="#2E2233" text-anchor="middle" font-weight="600">Realisation</text>
+<text class="kb-yields" x="2113.8" y="257.7" font-size="10.5" fill="#6E5C78" text-anchor="middle">yields Occurrence</text>
+<text class="kb-laws" x="2113.8" y="270.7" font-size="10.5" fill="#6E5C78" text-anchor="middle" font-style="italic">referred</text>
+<text class="kb-type" x="146.1" y="283.3" font-size="9.5" fill="#6E5C78" stroke="#F1EDF6" stroke-width="3" stroke-linejoin="round" paint-order="stroke">State</text>
+<text class="kb-type" x="326.7" y="283.7" font-size="9.5" fill="#6E5C78" stroke="#F7F2EA" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Traces</text>
+<text class="kb-type" x="508.6" y="290.7" font-size="9.5" fill="#6E5C78" stroke="#F7F2EA" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Traces</text>
+<text class="kb-type" x="508.6" y="277.7" font-size="9.5" fill="#6E5C78" stroke="#F7F2EA" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Words</text>
+<text class="kb-type" x="706.1" y="248.8" font-size="9.5" fill="#6E5C78" stroke="#FAF2F7" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Terms</text>
+<text class="kb-type" x="931.2" y="273.5" font-size="9.5" fill="#6E5C78" stroke="#FAF2F7" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Readings</text>
+<text class="kb-type" x="1130" y="279.2" font-size="9.5" fill="#6E5C78" stroke="#FAF2F7" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Belief</text>
+<text class="kb-type" x="706.1" y="209.8" font-size="9.5" fill="#6E5C78" stroke="#FAF2F7" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Operators</text>
+<text class="kb-type" x="706.1" y="222.8" font-size="9.5" fill="#6E5C78" stroke="#FAF2F7" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Standards</text>
+<text class="kb-type" x="706.1" y="235.8" font-size="9.5" fill="#6E5C78" stroke="#FAF2F7" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Rules</text>
+<text class="kb-type" x="1347.5" y="251.5" font-size="9.5" fill="#6E5C78" stroke="#FAF2F7" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Evaluations</text>
+<text class="kb-type" x="1332.8" y="109.5" font-size="9.5" fill="#6E5C78" stroke="#FAF2F7" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Proposals</text>
+<text class="kb-type" x="1329.7" y="177.5" font-size="9.5" fill="#6E5C78" stroke="#FAF2F7" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Practice</text>
+<text class="kb-type" x="1567.6" y="251.3" font-size="9.5" fill="#6E5C78" stroke="#FAF2F7" stroke-width="3" stroke-linejoin="round" paint-order="stroke">PolicyVersion</text>
+<text class="kb-type" x="1786.8" y="255.9" font-size="9.5" fill="#6E5C78" stroke="#FAF2F7" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Action</text>
+<text class="kb-type" x="1974.9" y="255.6" font-size="9.5" fill="#6E5C78" stroke="#FAF2F7" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Action</text>
+<text class="kb-next-label" x="1104" y="321.7" font-size="9.5" fill="#7864B0" text-anchor="end" font-style="italic" stroke="#FAF2F7" stroke-width="3" stroke-linejoin="round" paint-order="stroke">next · Belief</text>
+<text class="kb-next-label" x="1615.4" y="345.4" font-size="9.5" fill="#7864B0" text-anchor="middle" font-style="italic" stroke="#FAF2F7" stroke-width="3" stroke-linejoin="round" paint-order="stroke">next · PolicyVersion</text>
+<text class="kb-next-label" x="1488.8" y="361.4" font-size="9.5" fill="#7864B0" text-anchor="middle" font-style="italic" stroke="#FAF2F7" stroke-width="3" stroke-linejoin="round" paint-order="stroke">next · Action</text>
+<text class="kb-next-label" x="1094.8" y="377.4" font-size="9.5" fill="#7864B0" text-anchor="middle" font-style="italic" stroke="#FAF2F7" stroke-width="3" stroke-linejoin="round" paint-order="stroke">next · Inquiry</text>
+<text class="kb-next-label" x="1100.4" y="393.4" font-size="9.5" fill="#7864B0" text-anchor="middle" font-style="italic" stroke="#FAF2F7" stroke-width="3" stroke-linejoin="round" paint-order="stroke">next · State</text>
+<text class="kb-key-text" x="48" y="437.5" font-size="10" fill="#6E5C78">wire</text>
+<text class="kb-key-text" x="122.4" y="437.5" font-size="10" fill="#6E5C78">next: carried to the following turn</text>
+<text class="kb-key-text" x="366.4" y="437.5" font-size="10" fill="#6E5C78">boundary: given from outside the loop</text>
+<text class="kb-key-text" x="621.6" y="437.5" font-size="10" fill="#6E5C78">referred to, not established</text>
+<text class="kb-key-text" x="816.4" y="437.5" font-size="10" fill="#6E5C78">Manifestational</text>
+<text class="kb-key-text" x="938.4" y="437.5" font-size="10" fill="#6E5C78">Relational</text>
+<text class="kb-key-text" x="1032.4" y="437.5" font-size="10" fill="#6E5C78">Ontological</text>
+<text class="kb-title" x="2190.8" y="437.5" font-size="10" fill="#6E5C78" text-anchor="end" font-style="italic">standard · version 1</text>
+</svg>
