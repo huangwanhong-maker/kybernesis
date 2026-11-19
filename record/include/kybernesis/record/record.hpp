@@ -56,7 +56,8 @@ namespace kybernesis::record {
 using kernel::Family;
 using kernel::Verdict;
 
-enum class Act { method, observe, fill, amend, review };
+// The acts that make entries, and `choose`, which makes no entry: it chooses which of a block's methods fills it from a turn on.
+enum class Act { method, observe, fill, amend, review, choose };
 
 inline const char* name(Act a) {
   switch (a) {
@@ -64,12 +65,13 @@ inline const char* name(Act a) {
     case Act::observe: return "observe";
     case Act::fill: return "fill";
     case Act::amend: return "amend";
-    default: return "review";
+    case Act::review: return "review";
+    default: return "choose";
   }
 }
 
 inline Act act_of(const std::string& s) {
-  for (Act a : {Act::method, Act::observe, Act::fill, Act::amend, Act::review})
+  for (Act a : {Act::method, Act::observe, Act::fill, Act::amend, Act::review, Act::choose})
     if (s == name(a)) return a;
   throw std::invalid_argument("kybernesis::record: no act named " + s);
 }
@@ -139,6 +141,17 @@ struct Method {
   Step apply;
 };
 
+// A choice of method: from a turn on, on a branch, the block is filled by the method of that name among its alternatives. Choices
+// are read like entries: a branch's own take precedence, and it inherits its parent's made before it was taken (`at`, the number
+// of entries the record held when the choice was made).
+struct Choice {
+  std::string branch, block, method, by, role, reason, when;
+  std::size_t from = 0, at = 0;
+};
+
+// A block's alternative methods; the first is the default until another is chosen.
+using Registry = std::map<std::string, std::vector<Method>>;
+
 struct Trajectory {
   architecture::Architecture arch;
   std::string arch_digest;
@@ -148,6 +161,7 @@ struct Trajectory {
   std::map<std::string, std::string> initial;  // a next wire's words -> its first value's digest
   std::vector<Branch> branches;                // the main line first
   std::vector<Entry> entries;                  // only ever appended to
+  std::vector<Choice> choices;                 // only ever appended to
   std::map<std::string, std::string> values;   // digest -> payload
   std::map<std::string, File> files;           // digest -> file
   archeion::fixity::Journal journal;
@@ -193,6 +207,11 @@ inline std::string canonical(const Entry& e) {
 
 inline std::string canonical(const Branch& b) {
   return b.name + '\x1f' + b.parent + '\x1f' + std::to_string(b.from) + '\x1f' + std::to_string(b.since) + '\x1f' + b.reason + '\x1f' + b.by + '\x1f' + b.when + '\x1f';
+}
+
+inline std::string canonical(const Choice& c) {
+  return c.branch + '' + c.block + '' + c.method + '' + c.by + '' + c.role + '' + c.reason + '' + c.when + '' + std::to_string(c.from) + '' +
+         std::to_string(c.at) + '';
 }
 
 inline std::string canonical(const File& f) { return f.name + '\x1f' + f.digest + '\x1f' + f.kind + '\x1f' + std::to_string(f.bytes) + '\x1f'; }
@@ -597,6 +616,101 @@ inline Verdict revise(Trajectory& t, const architecture::Architecture& a, const 
   return Verdict::yes(claim, reason);
 }
 
+// The place in the journal where a branch was taken (the main line: 0).
+inline std::size_t sealed_at(const Trajectory& t, const std::string& branch) {
+  for (std::size_t k = 0; k < t.journal.entries.size(); k++)
+    if (t.journal.entries[k].what == "branch" && t.journal.entries[k].about == branch) return k;
+  return 0;
+}
+
+// The name of the method chosen for a block at a turn, read from a branch: the branch's own latest choice in force, else what it
+// inherits from its parent as the parent stood when it was taken; empty when none was chosen (the block's default then fills it).
+inline std::string chosen(const Trajectory& t, const std::string& branch, std::size_t turn, const std::string& block) {
+  std::string b = branch;
+  std::size_t limit = t.journal.entries.size();
+  for (std::size_t steps = 0; steps <= t.branches.size(); steps++) {
+    const Choice* best = nullptr;
+    for (const auto& c : t.choices)
+      if (c.branch == b && c.block == block && c.at < limit && turn >= c.from) best = &c;  // the latest in force
+    if (best) return best->method;
+    const Branch* br = branch_named(t, b);
+    if (!br || br->parent.empty()) return {};
+    limit = std::min(limit, sealed_at(t, b));
+    b = br->parent;
+  }
+  return {};
+}
+
+// A choice of method for a block, from a turn on, on a branch: by a role the rules empower to choose for that block, and, when the
+// block's alternatives are given, among them. What the earlier method made from that turn on is then stale, and a turn run again
+// fills the block with the method chosen; re-reading old evidence by another method is a branch and a choice.
+inline Verdict choose(Trajectory& t, const std::string& branch, std::size_t from, const std::string& block, const std::string& method, const std::string& by,
+                      const std::string& role, const std::string& reason, const std::string& when, const Registry* alternatives = nullptr) {
+  const std::string claim = by + " chooses " + method + " for " + block + " from turn " + std::to_string(from) + " of " + branch;
+  const architecture::Block* b = t.arch.block(block);
+  if (!b) return Verdict::no(claim, "the architecture has no block " + block);
+  if (referred(*b)) return Verdict::no(claim, block + " is the world's: no method fills it from the record");
+  if (!branch_named(t, branch)) return Verdict::no(claim, "no branch named " + branch);
+  if (!holds_turn(t, branch, from)) return Verdict::no(claim, "turn " + std::to_string(from) + " comes before the branch was taken");
+  if (!t.rules.allows(block, Act::choose, role)) return Verdict::no(claim, "the role " + (role.empty() ? std::string("(none)") : role) + " may not choose the method of " + block);
+  if (alternatives) {
+    const auto it = alternatives->find(block);
+    bool known = false;
+    if (it != alternatives->end())
+      for (const auto& m : it->second) known = known || m.name == method;
+    if (!known) return Verdict::no(claim, "no method named " + method + " is among the alternatives of " + block);
+  }
+  Choice c{branch, block, method, by, role, reason, when, from, t.journal.entries.size()};
+  try {
+    for (const auto* f : {&method, &by, &role, &reason}) detail::plain(*f, "a choice's field");
+    detail::seal(t, when, by, "choose", branch + "/" + block, digest_of(canonical(c)));
+  } catch (const std::exception& x) {
+    return Verdict::no(claim, x.what());
+  }
+  t.choices.push_back(c);
+  return Verdict::yes(claim, reason);
+}
+
+// The method that fills a block: the one chosen, among its alternatives, or the first when none was chosen; null when the block
+// has none, or the one chosen is not given.
+inline const Method* pick(const Registry& methods, const std::string& block, const std::string& name) {
+  const auto it = methods.find(block);
+  if (it == methods.end() || it->second.empty()) return nullptr;
+  if (name.empty()) return &it->second.front();
+  for (const auto& m : it->second)
+    if (m.name == name) return &m;
+  return nullptr;
+}
+
+inline Registry registry_of(const std::map<std::string, Method>& methods) {
+  Registry r;
+  for (const auto& [block, m] : methods) r[block] = {m};
+  return r;
+}
+
+// What enters at a boundary (a constitution, proposals, practices) is entered again each turn, for a turn may change it. Carrying it
+// over is an act like any other: each boundary without a value at `turn` takes the values it held at the turn before, entered by
+// `by` in `role` with the act its last entry was made by (a fill stays a fill, an observation an observation), and the reason says
+// where they came from. Authority applies as to any entry: a role not empowered carries proposals. Boundaries named in `only`, when
+// it is not empty, are the only ones carried.
+inline std::vector<Outcome> carry(Trajectory& t, const std::string& branch, std::size_t turn, const std::string& by, const std::string& role, const std::string& when,
+                                  const std::vector<std::string>& only = {}) {
+  std::vector<Outcome> out;
+  if (turn == 0) return out;
+  for (const auto& b : t.arch.blocks) {
+    if (!b.boundary || referred(b)) continue;
+    if (!only.empty() && std::find(only.begin(), only.end(), b.name) == only.end()) continue;
+    if (current(t, branch, turn, b.name)) continue;
+    const Entry* before = current(t, branch, turn - 1, b.name);
+    if (!holds_value(before)) continue;
+    const Act act = before->act == Act::observe ? Act::observe : Act::fill;
+    const std::string reason = "carried from turn " + std::to_string(turn - 1) + " (entry " + std::to_string(before->id) + ")";
+    out.push_back(detail::personal(t, act, branch, turn, b.name, by, role, detail::payloads(t, before->outputs), reason, before->files, when, -1, {},
+                                   by + " carries " + b.name + " to turn " + std::to_string(turn) + " of " + branch));
+  }
+  return out;
+}
+
 // ---- Running a turn ----------------------------------------------------------------------------------------------------------
 
 // The blocks in an order in which every block comes after those that feed it within a turn.
@@ -628,40 +742,50 @@ struct Progress {
   std::vector<std::pair<std::size_t, std::string>> stale;    // persons' entries resting on replaced inputs, and why
 };
 
-// One turn of a branch: every block without a current value, or whose current value a method made from inputs since replaced,
-// is filled by its method where one is given and its inputs are available. A person's entry is never recomputed: when its
-// inputs have changed, it is reported stale, for its author to look at again.
-inline Progress run_turn(Trajectory& t, const std::string& branch, std::size_t turn, const std::map<std::string, Method>& methods, const std::string& when) {
+// One turn of a branch: every block without a current value, or whose current value a method made from inputs since replaced, or
+// a method other than the one now chosen made, is filled by the chosen method (the first of its alternatives unless another was
+// chosen) where its inputs are available. A person's entry is never recomputed: when its inputs have changed, it is reported
+// stale, for its author to look at again.
+inline Progress run_turn(Trajectory& t, const std::string& branch, std::size_t turn, const Registry& methods, const std::string& when) {
   Progress p;
   for (const auto& name : order(t.arch)) {
     const architecture::Block& b = *t.arch.block(name);
     if (referred(b)) continue;
     const Entry* c = current(t, branch, turn, name);
     const auto st = c ? stale(t, *c, branch) : std::nullopt;
-    if (c && !st) continue;
+    const std::string want = chosen(t, branch, turn, name);
+    const Method* m = pick(methods, name, want);
+    const bool other = c && c->act == Act::method && m && c->by != m->name;
+    if (c && !st && !other) continue;
     if (c && c->act != Act::method) {
       p.stale.push_back({c->id, *st});
       continue;
     }
-    const auto m = methods.find(name);
     const Inputs in = inputs_for(t, branch, turn, name);
-    if (m == methods.end()) {
-      p.waiting.push_back({name, in.from_world ? in.missing : "no method fills it and no one has entered it"});
+    if (!m) {
+      p.waiting.push_back({name, !want.empty() ? "the method chosen, " + want + ", is not given"
+                                 : in.from_world ? in.missing : "no method fills it and no one has entered it"});
       continue;
     }
     if (!in.missing.empty()) {
       p.waiting.push_back({name, in.missing});
       continue;
     }
-    const Outcome o = apply(t, branch, turn, name, m->second, when);
+    const Outcome o = apply(t, branch, turn, name, *m, when);
     if (o.entry >= 0) p.made.push_back(static_cast<std::size_t>(o.entry));
     else p.waiting.push_back({name, o.verdict.reason});
   }
   return p;
 }
 
+inline Progress run_turn(Trajectory& t, const std::string& branch, std::size_t turn, const std::map<std::string, Method>& methods, const std::string& when) {
+  return run_turn(t, branch, turn, registry_of(methods), when);
+}
+
 // Every turn of a branch from `from` on, run again, so that a change reaches all that a method made after it.
-inline Progress propagate(Trajectory& t, const std::string& branch, std::size_t from, const std::map<std::string, Method>& methods, const std::string& when) {
+inline Progress propagate(Trajectory& t, const std::string& branch, std::size_t from, const std::map<std::string, Method>& methods, const std::string& when);
+
+inline Progress propagate(Trajectory& t, const std::string& branch, std::size_t from, const Registry& methods, const std::string& when) {
   Progress all;
   const auto last = last_turn(t, branch);
   if (!last) return all;
@@ -675,6 +799,10 @@ inline Progress propagate(Trajectory& t, const std::string& branch, std::size_t 
   return all;
 }
 
+inline Progress propagate(Trajectory& t, const std::string& branch, std::size_t from, const std::map<std::string, Method>& methods, const std::string& when) {
+  return propagate(t, branch, from, registry_of(methods), when);
+}
+
 // ---- Verifying, replaying, revisiting ---------------------------------------------------------------------------------------
 
 // Every digest recomputed (entries, values, files, branches), the journal's chain verified, and the journal's acts matched to
@@ -686,11 +814,17 @@ inline Verdict verify(const Trajectory& t) {
     if (digest_of(p) != d) return Verdict::no(claim, "the value kept under " + d.substr(0, 12) + "… is not the value of that digest");
   for (const auto& [d, f] : t.files)
     if (f.digest != d) return Verdict::no(claim, "the file " + f.name + " is kept under another digest");
-  std::size_t next_entry = 0, next_branch = 1;
+  std::size_t next_entry = 0, next_branch = 1, next_choice = 0;
   for (const auto& j : t.journal.entries) {
     if (j.what == "open" || j.what == "initial" || j.what == "file" || j.what == "revise") {
       if (j.what == "initial" && !t.values.count(j.note)) return Verdict::no(claim, "the first value of " + j.about + " is not kept");
       if (j.what == "file" && !t.files.count(j.about)) return Verdict::no(claim, "the file " + j.about.substr(0, 12) + "… sealed in the journal is not recorded");
+      continue;
+    }
+    if (j.what == "choose") {
+      if (next_choice >= t.choices.size()) return Verdict::no(claim, "the journal seals a choice the record does not hold: " + j.about);
+      const Choice& c = t.choices[next_choice++];
+      if (c.branch + "/" + c.block != j.about || digest_of(canonical(c)) != j.note) return Verdict::no(claim, "the choice of " + c.method + " for " + c.block + " is not the one the journal sealed");
       continue;
     }
     if (j.what == "branch") {
@@ -716,6 +850,7 @@ inline Verdict verify(const Trajectory& t) {
   }
   if (next_entry != t.entries.size()) return Verdict::no(claim, "entry " + std::to_string(next_entry) + " was never sealed in the journal");
   if (next_branch != t.branches.size()) return Verdict::no(claim, "the branch " + t.branches[next_branch].name + " was never sealed in the journal");
+  if (next_choice != t.choices.size()) return Verdict::no(claim, "the choice of " + t.choices[next_choice].method + " for " + t.choices[next_choice].block + " was never sealed in the journal");
   return Verdict::yes(claim, std::to_string(t.entries.size()) + " entries, " + std::to_string(t.journal.entries.size()) + " acts sealed, head " + t.journal.head().substr(0, 12) + "…");
 }
 
@@ -726,19 +861,19 @@ struct Replayed {
 
 // Every value a method made, recomputed from its recorded inputs by the method of that name: holds when every output is the
 // same, fails naming the first output that differs, undecided when no method of that name is given.
-inline std::vector<Replayed> replay(const Trajectory& t, const std::map<std::string, Method>& methods) {
+inline std::vector<Replayed> replay(const Trajectory& t, const Registry& methods) {
   std::vector<Replayed> out;
   for (const auto& e : t.entries) {
     if (e.act != Act::method) continue;
     const std::string claim = "entry " + std::to_string(e.id) + " (" + e.block + " by " + e.by + ") replays";
-    const auto m = methods.find(e.block);
-    if (m == methods.end() || m->second.name != e.by) {
+    const Method* m = pick(methods, e.block, e.by);
+    if (!m) {
       out.push_back({e.id, Verdict::unknown(claim, "no method " + e.by + " is given for " + e.block)});
       continue;
     }
     std::vector<std::string> again;
     try {
-      again = m->second.apply(detail::payloads(t, e.inputs));
+      again = m->apply(detail::payloads(t, e.inputs));
     } catch (const std::exception& x) {
       out.push_back({e.id, Verdict::no(claim, std::string("the method now throws: ") + x.what())});
       continue;
@@ -752,6 +887,8 @@ inline std::vector<Replayed> replay(const Trajectory& t, const std::map<std::str
   }
   return out;
 }
+
+inline std::vector<Replayed> replay(const Trajectory& t, const std::map<std::string, Method>& methods) { return replay(t, registry_of(methods)); }
 
 // The value of a block's output at a turn, read from a branch.
 inline std::optional<std::string> value(const Trajectory& t, const std::string& branch, std::size_t turn, const std::string& block, const std::string& port) {

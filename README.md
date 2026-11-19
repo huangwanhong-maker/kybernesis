@@ -57,7 +57,8 @@ When a revision changes a block, the methods filling it are re-admitted (`carry`
 | [blocks](blocks/README.md) | values and instances; methods; admission, with the laws decided by kategoria; carrying methods over a revision | draft |
 | [methods](methods/README.md) | adapters: constants, tables, mechanisms and the world's transitions; interpretation (declared, construal, precedents); estimation (possibilistic, Bayes, and a face-value counterexample); evaluation (exceedance under readings); policy (threshold, HSVI); an invented example | draft |
 | [loop](loop/README.md) | the loop run on an instance, for any admitted architecture | draft |
-| [record](record/README.md) | the trajectory: entries made by a method, observed, filled, amended or reviewed, checked for type, bound and authority; files by digest; branches; replay, difference, what rests on what, lineage as W3C PROV; sealed in archeion's journal | draft |
+| [record](record/README.md) | the trajectory: entries made by a method, observed, filled, amended or reviewed, checked for type, bound and authority; files by digest; branches; a block's method chosen among its alternatives by a sealed act; boundaries carried to the next turn; replay, difference, what rests on what, lineage as W3C PROV; sealed in archeion's journal | draft |
+| [ontology](ontology/README.md) | the ontology of facts as data: registers, kinds, axes nominal and ordered, relations typed by their ends; admitted by constraints and kategoria; records checked; revisions admitted with a mapping (a functor of kinds) and records carried along them | draft |
 | [transfer](transfer/README.md) | practices carried between relational systems by a lens: the square in relations (kategoria) and in laws, support factors, "it will work here" over the readings | draft |
 | evolution | policy making as evolution with an honest protocol, on heuresis | planned |
 | constitution | versions of the schema, rules of change, records migrated by kategoria | planned |
@@ -70,7 +71,7 @@ kategoria, tekmerion, tyche and apodeixis directly; archeion for the record's jo
 
 ## 4. Checks
 
-137 checks in eight programs: `check_kybernesis_kernel`, `_architecture`, `_schema`, `_blocks`, `_methods`, `_loop`, `_record` and `_transfer`. Inside the infrastructure, run them with `node development/tools/run-cpp.mjs foundations/kybernesis kybernesis`. Run with `--report`, `check_kybernesis_methods` prints the report that the visualization layer's computational graph reads ([docs/figures/standard-report.json](docs/figures/standard-report.json)).
+162 checks in nine programs: `check_kybernesis_kernel`, `_architecture`, `_schema`, `_blocks`, `_methods`, `_loop`, `_record`, `_transfer` and `_ontology`. Inside the infrastructure, run them with `node development/tools/run-cpp.mjs foundations/kybernesis kybernesis`. Run with `--report`, `check_kybernesis_methods` prints the report that the visualization layer's computational graph reads ([docs/figures/standard-report.json](docs/figures/standard-report.json)).
 
 ![The standard architecture as a computational graph, with the methods filling its blocks and their verdicts](docs/figures/standard-architecture-with-methods.svg)
 

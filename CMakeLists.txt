@@ -76,7 +76,7 @@ function(kybernesis_module name)
   endif()
 endfunction()
 
-# The modules in their order (decisions 0003 and 0004).
+# The modules in their order (decisions 0003, 0004 and 0005).
 kybernesis_module(kernel LIBRARIES apodeixis::kernel)
 kybernesis_module(architecture LIBRARIES kybernesis::kernel morphe::formal kategoria::script)
 kybernesis_module(blocks LIBRARIES kybernesis::architecture kategoria::monoidal)
@@ -84,3 +84,4 @@ kybernesis_module(methods LIBRARIES kybernesis::blocks tyche::decision tekmerion
 kybernesis_module(loop LIBRARIES kybernesis::methods calx::random)
 kybernesis_module(record LIBRARIES kybernesis::blocks archeion::fixity archeion::provenance CHECK_LIBRARIES kybernesis::methods)
 kybernesis_module(transfer LIBRARIES kybernesis::kernel kategoria::monoidal)
+kybernesis_module(ontology LIBRARIES kybernesis::architecture kategoria::script morphe::formal)

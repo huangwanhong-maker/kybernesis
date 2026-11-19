@@ -1,0 +1,41 @@
+# The ontology of facts of the standard architecture, version 1 (decision 0005): the kinds the standard architecture declares, the
+# axes on which a fact of each is described, and the relations between facts. A work declares its own, or revises this one.
+ontology facts version 1
+registers Manifestational < Relational < Ontological
+
+kind Fact in Ontological
+kind Condition under Fact
+kind Occurrence under Fact
+kind Trace under Fact in Manifestational
+kind Relational under Fact in Relational
+kind Social under Relational
+kind Proposal under Social
+kind Institutional under Social
+kind Uptake under Institutional
+kind Decision under Institutional
+kind Normative under Institutional
+kind Policy under Normative
+kind Standard under Normative
+kind Rule under Normative
+kind Finding under Relational
+kind Construal under Finding
+kind Estimate under Finding
+kind Evaluation under Finding
+
+# How firmly a finding or a social fact stands; the grade of a trace's source (A a structured source, B a text with its passage,
+# C a word from memory); where a reading comes from; whether a fact is of one case or general.
+ordered axis standing : proposed < asserted < admitted < established
+ordered axis grade : C < B < A
+axis source : authority, convention, analyst, data, proposal
+axis scope : individual, general
+applies standing to Finding, Social
+applies grade to Trace
+applies source to Construal
+applies scope to Fact
+requires grade for Trace
+requires standing for Finding
+
+relation rests_on : Finding -> Trace
+relation takes_up : Uptake -> Evaluation
+relation authorised_by : Institutional -> Rule
+relation construes : Construal -> Trace

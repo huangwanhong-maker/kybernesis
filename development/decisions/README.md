@@ -13,6 +13,7 @@ Each record captures one decision that shapes the structure, interfaces or tooli
 | [0002](0002-scope-boundaries-and-dependencies.md) | Scope, boundaries and dependencies: the architecture of steering as data, admission by verification, dual verdicts | Accepted |
 | [0003](0003-the-first-modules.md) | The first modules: kernel, architecture, blocks, methods, loop | Accepted, provisionally |
 | [0004](0004-the-record-and-transfer.md) | The record and transfer: every value with how it came to be, and practices carried by a lens; archeion declared | Accepted, provisionally |
+| [0005](0005-choices-carrying-and-the-ontology-of-facts.md) | Methods chosen per block, boundaries carried, and the ontology of facts as data, revisable when its constraints and categorical claims hold | Accepted, provisionally |
 
 ## 2. Template
 

@@ -237,6 +237,46 @@ int main() {
     s.require("the record as PROV has no fault, and the decision's lineage reaches what was observed", faults.empty() && observed,
               faults.empty() ? std::to_string(back.size()) + " entities in its lineage" : faults.front().where + ": " + faults.front().what);
   }
+  // A choice of method: the possibilistic filter chosen for Estimation on a branch from turn 0.
+  {
+    Registry alternatives = registry_of(ms);
+    alternatives["Estimation"].push_back(method_of(pf));
+    s.require("a role the rules do not empower may not choose a block's method",
+              choose(t, "main", 0, "Estimation", "possibility filter", "an analyst", "analyst", "", at(clock++), &alternatives).fails());
+    t.rules.grants.push_back({"Estimation", Act::choose, "lead"});
+    s.require("a method not among the block's alternatives is refused",
+              choose(t, "main", 0, "Estimation", "a crystal ball", "the lead", "lead", "", at(clock++), &alternatives).fails());
+    branch(t, "main", 0, "possibilistic", "estimate by what the evidence allows, without a law", "the lead", at(clock++));
+    const Verdict c = choose(t, "possibilistic", 0, "Estimation", "possibility filter", "the lead", "lead", "no law of the river is agreed", at(clock++), &alternatives);
+    const Progress q = propagate(t, "possibilistic", 0, alternatives, at(clock++));
+    const Entry* e0 = current(t, "possibilistic", 0, "Estimation");
+    bool reported = false;
+    for (const auto& [id, why] : q.stale) reported = reported || t.entries[id].block == "Estimation";
+    s.require("on the branch the chosen method fills Estimation from turn 0, the person's estimate at turn 1 reported stale, the main line unchanged",
+              c.holds() && e0 && e0->by == "possibility filter" && reported && current(t, "main", 0, "Estimation")->by == "Bayes filter" &&
+                  chosen(t, "possibilistic", 1, "Estimation") == "possibility filter" && chosen(t, "main", 1, "Estimation").empty(),
+              c.reason);
+    const auto rs = replay(t, alternatives);
+    bool all = !rs.empty();
+    for (const auto& r : rs) all = all && r.verdict.holds();
+    Trajectory altered = t;
+    altered.choices.back().method = "Bayes filter";
+    s.require("a choice is sealed: the record verifies and replays with the alternatives, and a choice altered afterwards is found",
+              verify(t).holds() && all && verify(altered).fails(), verify(altered).reason);
+  }
+  {
+    const auto props = carry(t, "main", 2, "the lead", "lead", at(clock++));
+    bool proposals = props.size() == 3;
+    for (const auto& o : props) proposals = proposals && o.verdict.undecided();
+    t.rules.grants.push_back({"*", Act::fill, "keeper"});
+    const auto kept = carry(t, "main", 2, "the keeper", "keeper", at(clock++));
+    bool all = kept.size() == 3;
+    for (const auto& o : kept) all = all && o.verdict.holds();
+    const bool said = all && contains(t.entries[static_cast<std::size_t>(kept[0].entry)].reason, "carried from turn 1");
+    const auto again = carry(t, "main", 2, "the keeper", "keeper", at(clock++));
+    s.require("the boundaries carried to the next turn: by a role not empowered as proposals, by an empowered one as entries saying where they came from, once only",
+              proposals && all && said && again.empty(), std::to_string(props.size()) + " proposals, " + std::to_string(kept.size()) + " carried");
+  }
   {
     architecture::Architecture v2 = a;
     v2.version = 2;

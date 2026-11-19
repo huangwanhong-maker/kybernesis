@@ -1,0 +1,5 @@
+# The mapping of facts version 1 to version 2: names that are the same need no line.
+revision facts from 1 to 2
+map kind Occurrence -> Event
+map value standing asserted -> claimed
+drop relation construes

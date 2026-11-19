@@ -20,6 +20,8 @@ What a person enters is held to what can be held:
 
 Files are named by the SHA-256 of their bytes. A branch is an overlay on its parent as the parent stood when it was taken, so it re-reads a turn without touching the main line. Every act is sealed in archeion's hash-chained journal.
 
+A block may have several methods, its alternatives, the first its default. A **choice** is a sealed act of its own: from a turn on, on a branch, the block is filled by the method of that name, chosen by a role the rules empower to `choose` (decision 0005). Re-reading old evidence by another method is a branch and a choice. **Carrying** enters a boundary's last values again at the next turn, as an act by whoever asks.
+
 A turn run again recomputes what methods made from replaced inputs. A person's entry is never replaced: it is reported stale. The record can then be:
 
 - verified (every digest and the chain);
@@ -32,12 +34,12 @@ A turn run again recomputes what methods made from replaced inputs. A person's e
 
 | Header | Holds |
 |---|---|
-| `record.hpp` | `Act`, `Entry`, `Rules`, `Branch`, `Trajectory`; `open`, `keep`, `initial`, `attach`; `current`, `inputs_for`, `stale`; `apply`, `observe`, `fill`, `amend`, `review`, `branch`, `revise`; `run_turn`, `propagate`; `verify`, `replay`, `value`, `diff`, `resting_on`, `lineage` |
+| `record.hpp` | `Act`, `Entry`, `Rules`, `Branch`, `Choice`, `Registry`, `Trajectory`; `open`, `keep`, `initial`, `attach`; `current`, `inputs_for`, `stale`, `chosen`; `apply`, `observe`, `fill`, `amend`, `review`, `choose`, `carry`, `branch`, `revise`; `run_turn`, `propagate`; `verify`, `replay`, `value`, `diff`, `resting_on`, `lineage` |
 | `finite.hpp` | an instance's values as canonical text (`write`, `parse`), the checks of its types, a block's method seen by the record, `support_bound` |
 
 ## 3. Checks
 
-`check_kybernesis_record` (33 checks), on the invented riverside example and the standard architecture:
+`check_kybernesis_record` (38 checks), on the invented riverside example and the standard architecture:
 
 - the world observed, not computed;
 - a proposal and its review;
@@ -49,5 +51,7 @@ A turn run again recomputes what methods made from replaced inputs. A person's e
 - an altered entry, value and journal, and a missing entry, each found;
 - what rests on an amendment, a file and an agent;
 - the record as PROV without fault;
+- a choice of method refused without the role and for a method not offered, then made on a branch, filling the block from that turn, replayed and found when altered;
+- boundaries carried, as proposals by a role not empowered and as entries by an empowered one, once only;
 - a revision sealed;
 - an act dated before the last, refused.

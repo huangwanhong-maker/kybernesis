@@ -143,7 +143,15 @@ Each reading of X's open terms gives a lens and X's belief. Under a reading, "it
 
 Cartwright and Hardie (2012) give the support factors; Pearl and Bareinboim (2014) say when the commuting can be checked from data.
 
-## 9. References
+## 9. Methods Chosen, and the Ontology of Facts
+
+A block may hold several methods, its alternatives. Which fills it from a turn on, on a branch, is chosen by a sealed act of its own, made by a role the rules empower. What another method made from that turn on is recomputed by the one chosen, and persons' entries are reported stale, as ever. So a method is a declaration in the record, not a property of the software, and reading old evidence again by another method is a branch and a choice.
+
+The ontology of facts is declared as the architecture is. Kinds form a forest ordered by "is a kind of", in registers ordered by aboutness, and the register of a kind is a functor of the two orders: a kind is never more about what obtains than its parent. Axes describe facts of the kinds they apply to, and relations are typed by the kinds of their ends.
+
+A revision maps the old ontology to the new. Its map of kinds must be a functor of their orders, decided by kategoria, and must keep each kind's register; an ordered axis must keep its order. A record is a set over the old kinds, carried along the functor by relabelling, which is the left Kan extension of a set-valued functor on the discrete kinds. What the new ontology does not keep for a kind is dropped and said, and what it newly requires is named for the record to supply.
+
+## 10. References
 
 - Cartwright, N. and Hardie, J. (2012). *Evidence-Based Policy: A Practical Guide to Doing It Better*. Oxford University Press.
 - Fritz, T. (2020). A synthetic approach to Markov kernels, conditional independence and theorems on sufficient statistics. *Advances in Mathematics* 370, 107239.

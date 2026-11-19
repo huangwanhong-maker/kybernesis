@@ -15,6 +15,7 @@ kybernesis (κυβέρνησις, steering, government: the root of "govern" and
 - **the loop run** on an instance, for any admitted architecture;
 - **the record** of a steering: every value of every block at every turn with how it came to be (a method, an observation, a person's entry, an amendment, a review), files by digest, branches, replay and lineage, sealed in archeion's journal (decision 0004);
 - **transfer** between relational systems as a lens, decided in relations by kategoria and measured in laws, with support factors (decision 0004);
+- **the ontology of facts as data:** kinds, axes and relations declared in a script, admitted by constraints and kategoria, revised with a mapping that must be a functor of the kinds, records carried along it (decision 0005);
 - later: policy making as evolution with an honest protocol (on heuresis), and the constitution (rules of change, migration of records).
 
 It builds on these sibling libraries:
@@ -68,14 +69,15 @@ kybernesis shares its governing principle with its sibling repositories: **modul
 ```
 kybernesis/
 ├── CMakeLists.txt   the project: one header-only target kybernesis::<module> per module; the siblings added once
-├── kernel/ · architecture/ · blocks/ · methods/ · loop/ · record/ · transfer/
+├── kernel/ · architecture/ · blocks/ · methods/ · loop/ · record/ · transfer/ · ontology/
 ├── architectures/   architecture scripts: the standard architecture, and revisions
+├── ontologies/      ontologies of facts: the standard architecture's, an invented revision and its mapping
 ├── schema/          the schema stated as categories (framework.cat), checked by kategoria
 ├── docs/            the theory note and figures
 └── development/     decisions · ideas · release notes
 ```
 
-Each module directory holds `README.md` (concepts first, then the content, then the checks), `include/kybernesis/<module>/` and `tests/check_*.cpp`, check programs on calx's `verification`, registered with CTest by `kybernesis_module`, which also tells them where the architectures and the schema are kept (`KYBERNESIS_DATA`). The modules and their order are in [decision 0003](development/decisions/0003-the-first-modules.md) and [decision 0004](development/decisions/0004-the-record-and-transfer.md).
+Each module directory holds `README.md` (concepts first, then the content, then the checks), `include/kybernesis/<module>/` and `tests/check_*.cpp`, check programs on calx's `verification`, registered with CTest by `kybernesis_module`, which also tells them where the architectures and the schema are kept (`KYBERNESIS_DATA`). The modules and their order are in [decision 0003](development/decisions/0003-the-first-modules.md), [decision 0004](development/decisions/0004-the-record-and-transfer.md) and [decision 0005](development/decisions/0005-choices-carrying-and-the-ontology-of-facts.md).
 
 ## 5. Working Procedures
 
@@ -119,4 +121,4 @@ When you edit kybernesis inside the infrastructure's `foundations/kybernesis`: c
 
 ## 8. Current State
 
-As of 2026-11-19, seven modules are written and checked (decisions 0003 and 0004; 137 checks in eight programs): `kernel`, `architecture`, `blocks`, `methods`, `loop`, `record` and `transfer`, with the standard architecture (`architectures/standard.arch`) and the schema (`schema/framework.cat`, 42 statements). The record declared archeion a dependency (decision 0004, to be confirmed by the user). The infrastructure's visualization layer draws architectures as computational graphs (`visualization/js/steering/`), its API composes the record and transfer (`api/cpp/science/steering.hpp`), and the Urban Studio's plug-in *From evidence to action* is their first work. The repository is published at `https://github.com/huangwanhong-maker/kybernesis`.
+As of 2026-11-19, eight modules are written and checked (decisions 0003 to 0005; 162 checks in nine programs): `kernel`, `architecture`, `blocks`, `methods`, `loop`, `record` (with methods chosen per block and boundaries carried), `transfer` and `ontology`, with the ontology of the standard architecture's facts (`ontologies/facts.ont`), with the standard architecture (`architectures/standard.arch`) and the schema (`schema/framework.cat`, 42 statements). The record declared archeion a dependency (decision 0004, to be confirmed by the user). The infrastructure's visualization layer draws architectures as computational graphs (`visualization/js/steering/`), its API composes the record and transfer (`api/cpp/science/steering.hpp`), and the Urban Studio's plug-in *From evidence to action* is their first work. The repository is published at `https://github.com/huangwanhong-maker/kybernesis`.
